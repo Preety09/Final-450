@@ -1,0 +1,75 @@
+
+6
+df dec dfd fd ded e
+4 2
+f f
+d e
+f b
+b e
+
+Your Output: 
+df e fd 
+
+Expected Output: 
+df e fd 
+
+bool find(vector<vector<char> >&board,string s,int index,int i,int j,int n,int m,vector<vector<int>>&v){ 
+    if(s.length()==index)
+    return true;
+    if(i>=0 && i<n && j>=0 && j<m && board[i][j]==s[index] && v[i][j]==-1 )
+    { 
+        v[i][j]=1;
+        
+        if(find(board,s,index+1,i+1,j,n,m,v) || 
+        find(board,s,index+1,i,j+1,n,m,v) || 
+        find(board,s,index+1,i-1,j,n,m,v) || 
+        find(board,s,index+1,i,j-1,n,m,v) ||
+        find(board,s,index+1,i-1,j+1,n,m,v) || 
+        find(board,s,index+1,i+1,j-1,n,m,v)|| 
+        find(board,s,index+1,i+1,j+1,n,m,v) || 
+        find(board,s,index+1,i-1,j-1,n,m,v))
+        return true;
+        v[i][j]=-1;
+        
+        
+    
+  
+    }
+    
+    return false;
+    
+}
+
+	vector<string> wordBoggle(vector<vector<char> >& board, vector<string>& d) {
+	   // cout<<"jsxk";
+	    vector<string>a;
+	    bool ans;
+	     int n=board.size();
+	     int m=board[0].size();
+	    for(int i=0;i<d.size();i++)
+	    { 
+	        string s=d[i];
+	        ans=false;
+	        vector<vector<int>>v(n,vector<int>(m,-1));
+	       
+	        for(int i=0;i<n;i++)
+	        { 
+	            for(int j=0;j<m;j++)
+	            { 
+	                if(board[i][j]==s[0])
+	                { 
+	                    ans=find(board,s,0,i,j,n,m,v);
+	                }
+	                if(ans==true)
+	                break;
+	            }
+	            if(ans==true)
+	            break;
+	        }
+	        if(ans==true)
+	        a.push_back(s);
+	    }
+	    return a;
+	    
+	    // Code here
+	}
