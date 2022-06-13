@@ -1,0 +1,70 @@
+For Input: 
+3
+2 3 4
+
+Your Output: 
+adg adh adi aeg aeh aei afg afh afi bdg bdh bdi beg beh bei bfg bfh bfi cdg cdh cdi ceg ceh cei cfg cfh cfi 
+
+Expected Output: 
+adg adh adi aeg aeh aei afg afh afi bdg bdh bdi beg beh bei bfg bfh bfi cdg cdh cdi ceg ceh cei cfg cfh cfi 
+
+void find(vector<string>str,string a,int index,int j,int n,vector<string>&ans)
+    { 
+        //cout<<"hhdhs";
+        
+        if(j==n)
+        { 
+            ans.push_back(a);
+        return;
+        }
+        string s=str[j];
+        for(int i=0;i<s.length();i++)
+        {  
+            a=a+s[i];
+            find(str,a,i,j+1,n,ans);
+            a.erase(a.length()-1,1);
+            
+            
+        
+       // find(str,a,index+1,j,n,ans);
+        }
+        
+    }
+    vector<string> possibleWords(int a[], int N)
+    { 
+        vector<string>ans;
+        vector<string>str;
+        unordered_map<int,string>m;
+       // int n=a.size();
+        for(int i=0;i<N;i++)
+        { 
+            if(a[i]==2)
+                m[a[i]]="abc";
+            else if(a[i]==3)
+                m[a[i]]="def";
+            else if(a[i]==4)
+                m[a[i]]="ghi";
+            else if(a[i]==5)
+                m[a[i]]="jkl";
+            else if(a[i]==6)
+                m[a[i]]="mno";
+            else if(a[i]==7)
+                m[a[i]]="pqrs";
+            else if(a[i]==8)
+                m[a[i]]="tuv";
+            else if(a[i]==9)
+                m[a[i]]="wxyz";
+        }
+        for(int i=0;i<N;i++)
+        { 
+            str.push_back(m[a[i]]);
+        }
+        string s=str[0];
+        
+    
+            string a1="";
+            find(str,a1,0,0,N,ans);
+        
+        return ans;
+        //Your code here
+    }
