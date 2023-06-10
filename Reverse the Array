@@ -1,0 +1,18 @@
+void reverse(int start,int end ,string &s,string &str)
+{ 
+    if(start>=end)
+    return;
+    swap(str[start],str[end]);
+    reverse(start+1,end-1,s,str);
+    
+}
+
+string reverseWord(string str){ 
+    int start=0;
+    int end=str.length()-1;
+    string s="";
+     reverse(start,end,s,str);
+     return str;
+    
+  //Your code here
+}
